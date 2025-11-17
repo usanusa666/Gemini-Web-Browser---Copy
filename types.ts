@@ -1,4 +1,3 @@
-
 export interface ChatMessage {
   role: 'user' | 'model';
   text: string;
@@ -31,12 +30,10 @@ export interface GroundingChunk {
     title?: string;
     // FIX: Changed placeAnswerSources from an array to an object to match the SDK type.
     placeAnswerSources?: {
+      // FIX: Corrected reviewSnippets type to match the Gemini SDK. The error indicates the `review` property is a string (the text), not a nested object. The `uri` is a sibling property.
       reviewSnippets: {
-        // FIX: Corrected reviewSnippets type to match the Gemini SDK. The SDK nests `uri` and `text` properties under a `review` object, which caused the type error.
-        review?: {
-          uri?: string;
-          text?: string;
-        };
+        uri?: string;
+        review?: string;
       }[];
     };
   };

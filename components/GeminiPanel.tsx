@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 // FIX: Replaced non-existent `VideosOperation` with `Operation`.
 import { GoogleGenAI, LiveServerMessage, Modality, Blob, Chat, GenerateContentResponse, Operation } from '@google/genai';
@@ -625,11 +624,12 @@ const WebAnalyzerFeature: React.FC<{currentUrl: string}> = ({ currentUrl }) => {
                                         </a>
                                     </li>
                                 )}
+                                {/* FIX: Updated rendering to match corrected GroundingChunk type for review snippets. */}
                                 {chunk.maps?.placeAnswerSources?.reviewSnippets?.map((snippet, j) => (
-                                    snippet.review?.uri && (
+                                    snippet.uri && (
                                         <li key={`snippet-${i}-${j}`} className="ml-4">
-                                            <a href={snippet.review.uri} target="_blank" rel="noopener noreferrer" className="text-gemini-blue hover:underline">
-                                                {snippet.review.text ? `"${snippet.review.text}"` : "Review Snippet"}
+                                            <a href={snippet.uri} target="_blank" rel="noopener noreferrer" className="text-gemini-blue hover:underline">
+                                                {snippet.review ? `"${snippet.review}"` : "Review Snippet"}
                                             </a>
                                         </li>
                                     )

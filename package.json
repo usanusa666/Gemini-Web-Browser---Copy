@@ -3,7 +3,7 @@
   "productName": "Gemini Web Browser",
   "version": "1.0.0",
   "description": "A web browser built with React and Electron, powered by Gemini.",
-  "main": "electron.cjs",
+  "main": "main.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
