@@ -1,7 +1,8 @@
 
 // FIX: Replaced non-existent `VideosOperation` with `Operation`.
 // FIX: Added GenerateVideosResponse and GenerateVideosMetadata for the generic Operation type.
-import { GoogleGenAI, Modality, Type, GenerateContentResponse, Chat, Operation, GenerateVideosResponse, GenerateVideosMetadata } from "@google/genai";
+// FIX: Removed non-exported `GenerateVideosMetadata` from import and specified generic type for Operation.
+import { GoogleGenAI, Modality, Type, GenerateContentResponse, Chat, Operation, GenerateVideosResponse } from "@google/genai";
 import { AspectRatio } from '../types';
 
 let ai: GoogleGenAI | null = null;
@@ -123,7 +124,8 @@ export const editImage = async (prompt: string, base64ImageData: string, mimeTyp
 
 // FIX: Replaced `VideosOperation` with the correct `Operation` type.
 // FIX: Provided the required generic type arguments for the Operation type.
-export const generateVideo = async (prompt: string, image?: { data: string; mimeType: string }, aspectRatio: '16:9' | '9:16' = '16:9'): Promise<Operation<GenerateVideosResponse, GenerateVideosMetadata>> => {
+// FIX: `GenerateVideosMetadata` is not exported, so using `Operation<GenerateVideosResponse>`.
+export const generateVideo = async (prompt: string, image?: { data: string; mimeType: string }, aspectRatio: '16:9' | '9:16' = '16:9'): Promise<Operation<GenerateVideosResponse>> => {
     const ai = getAIForVideo();
     const imagePayload = image ? { imageBytes: image.data, mimeType: image.mimeType } : undefined;
     
@@ -142,7 +144,8 @@ export const generateVideo = async (prompt: string, image?: { data: string; mime
 
 // FIX: Replaced `VideosOperation` with the correct `Operation` type.
 // FIX: Provided the required generic type arguments for the Operation type.
-export const checkVideoStatus = async(operation: Operation<GenerateVideosResponse, GenerateVideosMetadata>): Promise<Operation<GenerateVideosResponse, GenerateVideosMetadata>> => {
+// FIX: `GenerateVideosMetadata` is not exported, so using `Operation<GenerateVideosResponse>`.
+export const checkVideoStatus = async(operation: Operation<GenerateVideosResponse>): Promise<Operation<GenerateVideosResponse>> => {
     const ai = getAIForVideo();
     return await ai.operations.getVideosOperation({operation: operation});
 }

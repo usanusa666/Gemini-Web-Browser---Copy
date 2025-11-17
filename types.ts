@@ -32,8 +32,9 @@ export interface GroundingChunk {
     // FIX: Changed placeAnswerSources from an array to an object to match the SDK type.
     placeAnswerSources?: {
       reviewSnippets: {
-        uri: string;
-        text: string;
+        // FIX: Made `uri` and `text` optional to fix type incompatibility with the Gemini SDK's GroundingChunk type.
+        uri?: string;
+        text?: string;
       }[];
     };
   };
