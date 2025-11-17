@@ -1,0 +1,8 @@
+{
+  "name": "Gemini Web Browser",
+  "description": "A web browser built with React, powered by a versatile suite of Gemini AI features for browsing, content creation, and real-time interaction.",
+  "requestFramePermissions": [
+    "microphone",
+    "geolocation"
+  ]
+}
