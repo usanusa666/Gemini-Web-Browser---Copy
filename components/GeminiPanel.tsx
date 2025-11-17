@@ -614,9 +614,27 @@ const WebAnalyzerFeature: React.FC<{currentUrl: string}> = ({ currentUrl }) => {
             {result.chunks.length > 0 && (
                 <div className="mt-4">
                     <h4 className="font-semibold text-gray-400">Sources:</h4>
-                    <ul className="list-disc list-inside mt-2">
+                    {/* FIX: Updated rendering of grounding chunks to include Maps review snippets as required by guidelines, which also resolves a potential bug with empty hrefs. */}
+                    <ul className="list-disc list-inside mt-2 space-y-1">
                         {result.chunks.map((chunk, i) => (
-                           (chunk.web || chunk.maps) && <li key={i}><a href={chunk.web?.uri || chunk.maps?.uri} target="_blank" rel="noopener noreferrer" className="text-gemini-blue hover:underline">{chunk.web?.title || chunk.maps?.title}</a></li>
+                            <React.Fragment key={i}>
+                                {(chunk.web?.uri || chunk.maps?.uri) && (
+                                    <li>
+                                        <a href={chunk.web?.uri || chunk.maps?.uri} target="_blank" rel="noopener noreferrer" className="text-gemini-blue hover:underline">
+                                            {chunk.web?.title || chunk.maps?.title || "Source"}
+                                        </a>
+                                    </li>
+                                )}
+                                {chunk.maps?.placeAnswerSources?.reviewSnippets?.map((snippet, j) => (
+                                    snippet.review?.uri && (
+                                        <li key={`snippet-${i}-${j}`} className="ml-4">
+                                            <a href={snippet.review.uri} target="_blank" rel="noopener noreferrer" className="text-gemini-blue hover:underline">
+                                                {snippet.review.text ? `"${snippet.review.text}"` : "Review Snippet"}
+                                            </a>
+                                        </li>
+                                    )
+                                ))}
+                            </React.Fragment>
                         ))}
                     </ul>
                 </div>
