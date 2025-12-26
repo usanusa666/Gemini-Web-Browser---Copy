@@ -25,15 +25,5 @@
     },
     "allowImportingTsExtensions": true,
     "noEmit": true
-  },
-  "include": [
-    "renderer.d.ts",
-    "App.tsx",
-    "constants.tsx",
-    "index.tsx",
-    "types.ts",
-    "vite.config.ts",
-    "components",
-    "services"
-  ]
+  }
 }

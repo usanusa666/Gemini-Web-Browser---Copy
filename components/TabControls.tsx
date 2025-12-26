@@ -19,17 +19,20 @@ export const TabControls: React.FC<TabControlsProps> = ({
   onNewTab,
 }) => {
   return (
-    <div className="flex items-center bg-gemini-gray-800 pt-2 px-2">
+    <div className="flex items-center bg-gray-200 pt-2 px-2">
       <div className="flex items-end overflow-x-auto scrollbar-hide">
         {tabs.map((tab) => (
           <div
             key={tab.id}
             onClick={() => onSelectTab(tab.id)}
-            className={`flex items-center justify-between min-w-[120px] max-w-[200px] h-10 px-3 mr-1 rounded-t-lg cursor-pointer border-b-2
+            className={`relative flex items-center justify-between min-w-[120px] max-w-[200px] h-10 px-3 mr-1 cursor-pointer transition-colors duration-200
               ${activeTabId === tab.id
-                ? 'bg-gemini-gray-900 border-gemini-blue'
-                : 'bg-gemini-gray-700 border-transparent hover:bg-gemini-gray-600'
+                ? 'bg-white text-gray-800'
+                : 'bg-gray-300 text-gray-600 hover:bg-gray-100'
               }`}
+            style={{
+              clipPath: 'polygon(10% 0, 90% 0, 100% 100%, 0% 100%)',
+            }}
           >
             <div className="flex items-center overflow-hidden">
               {tab.favicon && <img src={tab.favicon} alt="favicon" className="w-4 h-4 mr-2 flex-shrink-0"/>}
@@ -40,7 +43,7 @@ export const TabControls: React.FC<TabControlsProps> = ({
                 e.stopPropagation();
                 onCloseTab(tab.id);
               }}
-              className="ml-2 p-1 rounded-full hover:bg-gemini-gray-500 flex-shrink-0"
+              className="ml-2 p-1 rounded-full hover:bg-gray-400 flex-shrink-0"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
@@ -49,7 +52,7 @@ export const TabControls: React.FC<TabControlsProps> = ({
       </div>
       <button 
         onClick={onNewTab}
-        className="p-2 ml-1 rounded-full hover:bg-gemini-gray-700"
+        className="p-2 ml-1 rounded-full hover:bg-gray-300"
         title="New Tab"
       >
         {ICONS.add}

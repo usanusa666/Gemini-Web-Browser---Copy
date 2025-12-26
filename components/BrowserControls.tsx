@@ -59,7 +59,7 @@ export const BrowserControls: React.FC<BrowserControlsProps> = ({
   };
 
   return (
-    <header className="flex items-center p-2 bg-gemini-gray-800 border-b border-gemini-gray-700 shadow-md z-10">
+    <header className="flex items-center p-2 bg-gray-200 border-b border-gray-300 shadow-md z-10">
       <div className="flex items-center space-x-1">
         <IconButton onClick={onBack} disabled={!canGoBack}>{ICONS.back}</IconButton>
         <IconButton onClick={onForward} disabled={!canGoForward}>{ICONS.forward}</IconButton>
@@ -71,21 +71,21 @@ export const BrowserControls: React.FC<BrowserControlsProps> = ({
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            className="w-full px-4 py-2 rounded-full bg-gemini-gray-900 border border-gemini-gray-700 focus:outline-none focus:ring-2 focus:ring-gemini-blue text-sm pr-10"
-            placeholder="Search Google or type a URL"
+            className="w-full px-4 py-2 rounded-md bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            placeholder="Search or type a URL"
           />
         </form>
         <button 
             onClick={isBookmarked ? onRemoveBookmark : onAddBookmark} 
-            className="absolute right-2 p-2 rounded-full hover:bg-gemini-gray-700 transition-colors"
+            className="absolute right-2 p-2 rounded-full hover:bg-gray-300 transition-colors"
             title={isBookmarked ? "Remove bookmark" : "Add bookmark"}
         >
-          {isBookmarked ? <span className="text-gemini-blue">{ICONS.bookmark_filled}</span> : ICONS.bookmark_outline}
+          {isBookmarked ? <span className="text-blue-500">{ICONS.bookmark_filled}</span> : ICONS.bookmark_outline}
         </button>
       </div>
       <button
         onClick={onTogglePanel}
-        className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-colors ${isPanelOpen ? 'bg-gemini-blue/20 text-gemini-blue' : 'hover:bg-gemini-gray-700'}`}
+        className={`flex items-center space-x-2 px-4 py-2 rounded-md transition-colors ${isPanelOpen ? 'bg-blue-500/20 text-blue-500' : 'hover:bg-gray-300'}`}
       >
         {ICONS.gemini}
         <span className="text-sm font-medium">Gemini</span>
